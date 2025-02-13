@@ -197,6 +197,42 @@ include("mysql.php");
             ?>
         </div>
     </div>
+
+    <div class="column">
+        <img src="./img/diorb30.png" alt="B30" class="image" width="300" height="200">
+        <div class="text-block">
+            <h4>Dior B30</h4>
+            <?php
+            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+            $model = "Dior B30";
+            $stmt->bind_param("s", $model);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+            }
+            ?>
+        </div>
+    </div>
+
+    <div class="column">
+        <img src="./img/oof.png" alt="OOF" class="image" width="300" height="200">
+        <div class="text-block">
+            <h4>Off White Out Of Office</h4>
+            <?php
+            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+            $model = "Off-White Out Of Office";
+            $stmt->bind_param("s", $model);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+            }
+            ?>
+        </div>
+    </div>
 </div>
 
     <script src="" async defer></script>
