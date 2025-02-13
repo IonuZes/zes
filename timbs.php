@@ -14,19 +14,21 @@
     <body>
         <p>hello</p>
         <p>hello</p>
-        <p>hello</p>
-        <?php
-            $stmt = $connection->prepare("select * from table1");
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while($row = mysqli_fetch_assoc($result)){
-                echo "<p>".$row["nume"]."</p>";
-            }
-        ?>
-        <p>hello</p>
-        <p>hello</p>
-        <?php
-        ?>
+        <a href="timbs.php" target="_blank"><img src="./img/timbs.png" alt="Timbs" class="image" width="300" height="200"></a>
+                <div class="text-block">
+                    <h4>Timberland 6 Inch Boots</h4>
+                    <?php
+                    $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                    $model = "Timberland 6 Inch Boot";
+                    $stmt->bind_param("s", $model);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                        echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                    }
+                    ?>
+                </div>
         <p>hello</p>
         <p>hello</p>
         
