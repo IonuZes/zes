@@ -78,7 +78,7 @@ include("mysql.php");
                     <h4>Timberland 6 Inch Boots</h4>
                     <?php
                     $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-                    $model = "Timberland 6 Inch Boot";
+                    $model = "Timberland 6 Inch Boots";
                     $stmt->bind_param("s", $model);
                     $stmt->execute();
                     $result = $stmt->get_result();
