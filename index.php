@@ -46,248 +46,333 @@ include("mysql.php");
             font-size: 16px;
             padding: 16px 32px;
         }
+
+        ul {
+            list-style-type: none;
+            margin: -0.2em;
+            padding: 0.2em;
+            overflow: hidden;
+            background-color: #38444d;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a,
+        .dropbtn {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover,
+        .dropdown:hover .dropbtn {
+            background-color: green;
+        }
+
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #38444d;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        li:last-child {
+            border-right: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: #04AA6D;
+        }
     </style>
 </head>
 
 <body>
-    <?php
-    echo "<table>";
-    echo "<tr>";
-    echo "<td>Marca</td>";
-    echo "<td>Model</td>";
-    echo "<td>Marimi</td>";
-    echo "<td>Pret</td>";
-    echo "</tr>";
-    $stmt = $connection->prepare("select * from sneakers");
-    $stmt->execute();
-    $result = $stmt->get_result();
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
-        echo "<td>" . $row["Marca"] . "</td>";
-        echo "<td>" . $row["Model"] . "</td>";
-        echo "<td>" . $row["Marimi"] . "</td>";
-        echo "<td>" . $row["Pret"] . "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-    ?>
-    <div class="row">
-            <div class="column">
-                <a href="timbs.php" target="_blank"><img src="./img/timbs.png" alt="Timbs" class="image" width="300" height="200"></a>
-                <div class="text-block">
-                    <h4>Timberland 6 Inch Boots</h4>
-                    <?php
-                    $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-                    $model = "Timberland 6 Inch Boot";
-                    $stmt->bind_param("s", $model);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<p>Marimi: " . $row["Marimi"] . "</p>";
-                        echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-                    }
-                    ?>
-                </div>
+    <ul>
+        <li><a href="#home" class="active">Home</a></li> <!-- back to home page -->
+        <li><a href="#news">News</a></li> <!-- eventual newsfeed de release uri -->
+        <li><a href="#femei" class="active">Femei</a></li> <!-- <40 -->
+        <li><a href="#barbati">Barbati</a></li> <!-- marimi >40 -->
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="active" class="dropbtn">Branduri</a>
+            <div class="dropdown-content">
+                <a href="Timberland_products.php">Timberland</a>
+                <a href="Dior_products.php">Dior</a>
+                <a href="Nike_products.php">Nike</a>
+                <a href="Lanvin_products.php">Lanvin</a>
+                <a href="ChristianL_products.php">Christian Louboutin</a>
+                <a href="LouisV_products.php">Louis Vuitton</a>
+                <a href="RickO_products.php">Rick Owens</a>
+                <a href="MaisonM_products.php">Maison Mihara</a>
+                <a href="Balenciaga_products.php">Balenciaga</a>
+                <a href="OffWhite_products.php">Off-White</a>
             </div>
+        <li style="float:right"><a href="#about" class="active">About</a></li>
+        <li style="float:right"><a href="#favorite">Favorite</a></li>
+        <li style="float:right"><a href="#contact" class="active">Contact</a></li>
+        <!-- date de contact: email/nr de tel/ sediu -->
+    </ul>
 
-    <div class="column">
-        <a href="jordan1.php" target="_blank"><img src="./img/Jordan1.png" alt="Jordan 1" class="image" width="300" height="200"></a>
-        <div class="text-block">
-            <h4>Jordan 1 High</h4>
-            <?php
-            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-            $model = "Nike Air Jordan 1";
-            $stmt->bind_param("s", $model);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
-                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-            }
-            ?>
+    <!-- Buton pentru favorite la fiecare pereche-->
+
+    <div class="row">
+        <div class="column">
+            <a href="./sneaker_pages/timbs.php" target="_blank"><img src="./img/timbs.png" alt="Timbs" class="image" width="300"
+                    height="200"></a>
+            <div class="text-block">
+                <h4>Timberland 6 Inch Boots</h4>
+                <?php
+                $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                $model = "Timberland 6 Inch Boot";
+                $stmt->bind_param("s", $model);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                    echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="column">
+            <a href="./sneaker_pages/jordan1.php" target="_blank"><img src="./img/Jordan1.png" alt="Jordan 1" class="image" width="300"
+                    height="200"></a>
+            <div class="text-block">
+                <h4>Jordan 1 High</h4>
+                <?php
+                $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                $model = "Nike Air Jordan 1";
+                $stmt->bind_param("s", $model);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                    echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="column">
+            <a href="./sneaker_pages/af1.php" target="_blank"><img src="./img/af1l.png" alt="Air Force 1" class="image" width="300"
+                    height="200"></a>
+            <div class="text-block">
+                <h4>Air Force 1</h4>
+                <?php
+                $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                $model = "Nike Air Force 1";
+                $stmt->bind_param("s", $model);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                    echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="column">
+            <a href="./sneaker_pages/sk8.php" target="_blank"><img src="./img/sk8.png" alt="SK8" class="image" width="300"
+                    height="200"></a>
+            <div class="text-block">
+                <h4>Louis Vuitton</h4>
+                <?php
+                $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                $model = "Louis Vuitton Skate";
+                $stmt->bind_param("s", $model);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                    echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="column">
+            <a href="./sneaker_pages/track.php" target="_blank"><img src="./img/Track.png" alt="Track" class="image" width="300"
+                    height="200"></a>
+            <div class="text-block">
+                <h4>Balenciaga</h4>
+                <?php
+                $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                $model = "Balenciaga Track";
+                $stmt->bind_param("s", $model);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                    echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="column">
+            <a href="./sneaker_pages/curb.php" target="_blank"><img src="./img/Lanvin.png" alt="Curb" class="image" width="300"
+                    height="200"></a>
+            <div class="text-block">
+                <h4>Lanvin Curb</h4>
+                <?php
+                $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                $model = "Lanvin Curb";
+                $stmt->bind_param("s", $model);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                    echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="column">
+            <a href="./sneaker_pages/brb.php" target="_blank"><img src="./img/BRB.png" alt="BRB" class="image" width="300"
+                    height="200"></a>
+            <div class="text-block">
+                <h4>Off-White Be Right Back</h4>
+                <?php
+                $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                $model = "Off-White Be Right Back";
+                $stmt->bind_param("s", $model);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                    echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="column">
+            <a href="./sneaker_pages/b30.php" target="_blank"><img src="./img/diorb30.png" alt="B30" class="image" width="300"
+                    height="200"></a>
+            <div class="text-block">
+                <h4>Dior B30</h4>
+                <?php
+                $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                $model = "Dior B30";
+                $stmt->bind_param("s", $model);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                    echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="column">
+            <a href="./sneaker_pages/oof.php" target="_blank"><img src="./img/oof.png" alt="OOF" class="image" width="300"
+                    height="200"></a>
+            <div class="text-block">
+                <h4>Off White Out Of Office</h4>
+                <?php
+                $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                $model = "Off-White Out Of Office";
+                $stmt->bind_param("s", $model);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                    echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="column">
+            <a href="./sneaker_pages/cla.php" target="_blank"><img src="./img/CLA.png" alt="CLA" class="image" width="300"
+                    height="200"></a>
+            <div class="text-block">
+                <h4>Christian Louboutin Astroloub</h4>
+                <?php
+                $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                $model = "Christian Louboutin Astroloub";
+                $stmt->bind_param("s", $model);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                    echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="column">
+            <a href="./sneaker_pages/rick.php" target="_blank"><img src="./img/ro.png" alt="ro" class="image" width="300"
+                    height="200"></a>
+            <div class="text-block">
+                <h4>Rick Owens DRKSHDW</h4>
+                <?php
+                $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                $model = "Rick Owens DRKSHDW";
+                $stmt->bind_param("s", $model);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                    echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="column">
+            <a href="./sneaker_pages/mihara.php" target="_blank"><img src="./img/mm.png" alt="mm" class="image" width="300"
+                    height="200"></a>
+            <div class="text-block">
+                <h4>Maison Mihara Yasuhiro</h4>
+                <?php
+                $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
+                $model = "Maison Mihara Yasuhiro";
+                $stmt->bind_param("s", $model);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<p>Marimi: " . $row["Marimi"] . "</p>";
+                    echo "<p>Pret: " . $row["Pret"] . " RON</p>";
+                }
+                ?>
+            </div>
         </div>
     </div>
-
-    <div class="column">
-        <a href="af1.php" target="_blank"><img src="./img/af1l.png" alt="Air Force 1" class="image" width="300" height="200"></a>
-        <div class="text-block">
-            <h4>Air Force 1</h4>
-            <?php
-            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-            $model = "Nike Air Force 1";
-            $stmt->bind_param("s", $model);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
-                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-            }
-            ?>
-        </div>
-    </div>
-
-    <div class="column">
-        <a href="sk8.php" target="_blank"><img src="./img/sk8.png" alt="SK8" class="image" width="300" height="200"></a>
-        <div class="text-block">
-            <h4>Louis Vuitton</h4>
-            <?php
-            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-            $model = "Louis Vuitton Skate";
-            $stmt->bind_param("s", $model);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
-                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-            }
-            ?>
-        </div>
-    </div>
-
-    <div class="column">
-        <img src="./img/Track.png" alt="Track" class="image" width="300" height="200">
-        <div class="text-block">
-            <h4>Balenciaga</h4>
-            <?php
-            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-            $model = "Balenciaga Track";
-            $stmt->bind_param("s", $model);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
-                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-            }
-            ?>
-        </div>
-    </div>
-
-    <div class="column">
-        <img src="./img/Lanvin.png" alt="Curb" class="image" width="300" height="200">
-        <div class="text-block">
-            <h4>Lanvin Curb</h4>
-            <?php
-            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-            $model = "Lanvin Curb";
-            $stmt->bind_param("s", $model);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
-                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-            }
-            ?>
-        </div>
-    </div>
-
-    <div class="column">
-        <img src="./img/BRB.png" alt="BRB" class="image" width="300" height="200">
-        <div class="text-block">
-            <h4>Off-White Be Right Back</h4>
-            <?php
-            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-            $model = "Off-White Be Right Back";
-            $stmt->bind_param("s", $model);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
-                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-            }
-            ?>
-        </div>
-    </div>
-
-    <div class="column">
-        <img src="./img/diorb30.png" alt="B30" class="image" width="300" height="200">
-        <div class="text-block">
-            <h4>Dior B30</h4>
-            <?php
-            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-            $model = "Dior B30";
-            $stmt->bind_param("s", $model);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
-                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-            }
-            ?>
-        </div>
-    </div>
-
-    <div class="column">
-        <img src="./img/oof.png" alt="OOF" class="image" width="300" height="200">
-        <div class="text-block">
-            <h4>Off White Out Of Office</h4>
-            <?php
-            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-            $model = "Off-White Out Of Office";
-            $stmt->bind_param("s", $model);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
-                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-            }
-            ?>
-        </div>
-    </div>
-
-    <div class="column">
-        <img src="./img/CLA.png" alt="CLA" class="image" width="300" height="200">
-        <div class="text-block">
-            <h4>Christian Louboutin Astroloub</h4>
-            <?php
-            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-            $model = "Christian Louboutin Astroloub";
-            $stmt->bind_param("s", $model);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
-                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-            }
-            ?>
-        </div>
-    </div>
-
-    <div class="column">
-        <img src="./img/ro.png" alt="ro" class="image" width="300" height="200">
-        <div class="text-block">
-            <h4>Rick Owens DRKSHDW</h4>
-            <?php
-            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-            $model = "Rick Owens DRKSHDW";
-            $stmt->bind_param("s", $model);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
-                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-            }
-            ?>
-        </div>
-    </div>
-
-    <div class="column">
-        <img src="./img/mm.png" alt="mm" class="image" width="300" height="200">
-        <div class="text-block">
-            <h4>Maison Mihara Yasuhiro</h4>
-            <?php
-            $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
-            $model = "Maison Mihara Yasuhiro";
-            $stmt->bind_param("s", $model);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<p>Marimi: " . $row["Marimi"] . "</p>";
-                echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-            }
-            ?>
-        </div>
-    </div>
-</div>
 
     <script src="" async defer></script>
 </body>
