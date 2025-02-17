@@ -118,23 +118,22 @@ include("mysql.php");
 
 <body>
     <ul>
-        <li><a href="#home" class="active">Home</a></li> <!-- back to home page -->
-        <li><a href="#news">News</a></li> <!-- eventual newsfeed de release uri -->
-        <li><a href="#femei" class="active">Femei</a></li> <!-- <40 -->
-        <li><a href="#barbati">Barbati</a></li> <!-- marimi >40 -->
+        <li><a href="index.php" target="_blank" class="active">Home</a></li> 
+        <li><a href="femei.php">Femei</a></li> 
+        <li><a href="barbati.php" class="active">Barbati</a></li> 
         <li class="dropdown">
-            <a href="javascript:void(0)" class="active" class="dropbtn">Branduri</a>
+            <a href="javascript:void(0)" class="dropbtn">Branduri</a>
             <div class="dropdown-content">
-                <a href="Timberland_products.php">Timberland</a>
-                <a href="Dior_products.php">Dior</a>
-                <a href="Nike_products.php">Nike</a>
-                <a href="Lanvin_products.php">Lanvin</a>
-                <a href="ChristianL_products.php">Christian Louboutin</a>
-                <a href="LouisV_products.php">Louis Vuitton</a>
-                <a href="RickO_products.php">Rick Owens</a>
-                <a href="MaisonM_products.php">Maison Mihara</a>
-                <a href="Balenciaga_products.php">Balenciaga</a>
-                <a href="OffWhite_products.php">Off-White</a>
+                <a href="./Drpdwn/Timberland_products.php">Timberland</a>
+                <a href="./Drpdwn/Dior_products.php">Dior</a>
+                <a href="./Drpdwn/Nike_products.php">Nike</a>
+                <a href="./Drpdwn/Lanvin_products.php">Lanvin</a>
+                <a href="./Drpdwn/ChristianL_products.php">Christian Louboutin</a>
+                <a href="./Drpdwn/LouisV_products.php">Louis Vuitton</a>
+                <a href="./Drpdwn/RickO_products.php">Rick Owens</a>
+                <a href="./Drpdwn/MaisonM_products.php">Maison Mihara</a>
+                <a href="./Drpdwn/Balenciaga_products.php">Balenciaga</a>
+                <a href="./Drpdwn/OffWhite_products.php">Off-White</a>
             </div>
         <li style="float:right"><a href="#about" class="active">About</a></li>
         <li style="float:right"><a href="#favorite">Favorite</a></li>
@@ -184,7 +183,7 @@ include("mysql.php");
         </div>
 
         <div class="column">
-            <a href="./sneaker_pages/af1.php" target="_blank"><img src="./img/af1l.png" alt="Air Force 1" class="image" width="300"
+            <a href="./sneaker_pages/af1.php" target="_blank"><img src="./img/af1low.png" alt="Air Force 1" class="image" width="300"
                     height="200"></a>
             <div class="text-block">
                 <h4>Air Force 1</h4>
@@ -206,7 +205,7 @@ include("mysql.php");
             <a href="./sneaker_pages/sk8.php" target="_blank"><img src="./img/sk8.png" alt="SK8" class="image" width="300"
                     height="200"></a>
             <div class="text-block">
-                <h4>Louis Vuitton</h4>
+                <h4>Louis Vuitton Skate</h4>
                 <?php
                 $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
                 $model = "Louis Vuitton Skate";
@@ -225,7 +224,7 @@ include("mysql.php");
             <a href="./sneaker_pages/track.php" target="_blank"><img src="./img/Track.png" alt="Track" class="image" width="300"
                     height="200"></a>
             <div class="text-block">
-                <h4>Balenciaga</h4>
+                <h4>Balenciaga Track</h4>
                 <?php
                 $stmt = $connection->prepare("SELECT * FROM sneakers WHERE Model = ?");
                 $model = "Balenciaga Track";
