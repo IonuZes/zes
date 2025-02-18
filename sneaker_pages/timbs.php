@@ -124,29 +124,6 @@ include("mysql.php");
             box-sizing: border-box;
         }
 
-        .column {
-            float: left;
-            width: 33.33%;
-            padding: 5px;
-        }
-
-        .row::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-        .image {
-            opacity: 1;
-            display: block;
-            transition: .5s ease;
-            backface-visibility: hidden;
-        }
-
-        .image:hover {
-            opacity: 0.3;
-        }
-
         .text {
             background-color: #04AA6D;
             color: white;
@@ -220,6 +197,13 @@ include("mysql.php");
         .active {
             background-color: #04AA6D;
         }
+
+        .logo {
+            min-height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
     </style>
 
 </head>
@@ -264,7 +248,7 @@ include("mysql.php");
             <!-- Product Description -->
             <div class="product-description">
                 <span>Timberland</span>
-                <h1>6 Inch Boots</h1>
+                <h2>6 Inch Boots</h2>
                 <p>O pereche de boots legendari, inițial creați pentru muncitori, dar deveniți un simbol al stilului urban și al modei hip-hop.</p>
             </div>
 
@@ -278,19 +262,8 @@ include("mysql.php");
             </div>
         </div>
     </main>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="row">
-        <div class="center">
-            <a href="https://www.timberland.com/en-us"><img src="/atestat/brand-logo/timberlands.png" alt="" width="500" height="300"></a>
-        </div>
+    <div class="logo">
+        <a href="https://www.timberland.ca/en-ca" target="_blank" ><img src="/atestat/brand-logo/timberlands.png" alt="" width="500" height="300"></a>
     </div>
     <script src="" async defer></script>
 </body>

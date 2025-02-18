@@ -32,8 +32,8 @@ include "mysqll.php";
         echo "<p>Pret: " . $row["Pret"] . " RON</p>";
 
         // Verificăm dacă există o imagine în baza de date, altfel folosim CLA.png
-        $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "Lanvin.png";
-        echo "<img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'>";
+        $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "lanvinc.png";
+        echo "<a href='/atestat/sneaker_pages/curb.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
     }
     ?>
 

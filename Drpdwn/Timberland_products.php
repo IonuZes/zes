@@ -3,7 +3,9 @@ include "mysqll.php";
 ?>
 <!DOCTYPE html>
 <html>
+    <style>
 
+    </style>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,10 +32,8 @@ include "mysqll.php";
         echo "<p>Model: " . $row["Model"] . "</p>";
         echo "<p>Marimi: " . $row["Marimi"] . "</p>";
         echo "<p>Pret: " . $row["Pret"] . " RON</p>";
-
-        // Verificăm dacă există o imagine în baza de date, altfel folosim CLA.png
         $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "timbs.png";
-        echo "<img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'>";
+        echo "<a href='/atestat/sneaker_pages/timbs.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
     }
     ?>
 

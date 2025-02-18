@@ -31,12 +31,9 @@ include "mysqll.php";
         echo "<p>Marimi: " . $row["Marimi"] . "</p>";
         echo "<p>Pret: " . $row["Pret"] . " RON</p>";
         $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "track.png";
-        echo "<img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'>";
+        echo "<a href='/atestat/sneaker_pages/track.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
     }
     ?>
-
-    
-
     <script src="" async defer></script>
 </body>
 

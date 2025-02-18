@@ -33,7 +33,7 @@ include "mysqll.php";
 
         // Verificăm dacă există o imagine în baza de date, altfel folosim CLA.png
         $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "ro.png";
-        echo "<img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'>";
+        echo "<a href='/atestat/sneaker_pages/rick.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
     }
     ?>
 
