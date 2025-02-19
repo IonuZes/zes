@@ -1,7 +1,7 @@
 <?php
 $title = "HomePage - ZesSneakers";
-include("mysql.php");
-include ('header.php');
+include "mysql.php";
+include 'header.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,6 @@ include ('header.php');
             display: table;
         }
 
-        /* Resetare stiluri pentru o afișare uniformă */
         * {
             margin: 0;
             padding: 0;
@@ -47,7 +46,6 @@ include ('header.php');
             min-height: 100vh;
         }
 
-        /* Navbar Styling */
         .navbar {
             background: #222;
             padding: 15px 0;
@@ -114,12 +112,10 @@ include ('header.php');
             color: #222;
         }
 
-        /* Afișează dropdown-ul când utilizatorul trece cu mouse-ul peste Brand-uri */
         .dropdown:hover .dropdown-menu {
             display: block;
         }
 
-        /* Container principal */
         .container {
             width: 80%;
             margin: auto;
@@ -131,7 +127,6 @@ include ('header.php');
             margin-top: 20px;
         }
 
-        /* Stilizare titluri */
         h1,
         h2 {
             text-align: center;
@@ -139,7 +134,6 @@ include ('header.php');
             margin-bottom: 20px;
         }
 
-        /* Stilizare liste */
         ul {
             list-style: none;
             padding: 0;
@@ -155,7 +149,6 @@ include ('header.php');
             width: 80%;
         }
 
-        /* Stilizare pentru secțiuni individuale */
         .section {
             background: #fff;
             padding: 20px;
@@ -164,7 +157,6 @@ include ('header.php');
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* Stilizare imaginilor */
         img {
             display: block;
             margin: 0 auto;
@@ -183,7 +175,6 @@ include ('header.php');
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Footer fixat jos */
         footer {
             background: #222;
             color: #fff;
@@ -195,7 +186,6 @@ include ('header.php');
             width: 100%;
         }
 
-        /* Containere pentru categorii - Flexbox */
         .categories {
             display: flex;
             justify-content: center;
@@ -205,11 +195,9 @@ include ('header.php');
             margin-top: 20px;
         }
 
-        /* Fiecare categorie (card) */
         .category {
             text-align: center;
             width: calc(33.333% - 20px);
-            /* 3 pe rând cu spațiu egal */
             background: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -219,32 +207,15 @@ include ('header.php');
             flex-direction: column;
             justify-content: space-between;
             min-height: 350px;
-            /* Asigură înălțime minimă pentru aliniere */
         }
 
-        /* Pentru responsive: pe ecrane mai mici, 2 sau 1 pe rând */
-        @media (max-width: 900px) {
-            .category {
-                width: calc(50% - 20px);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .category {
-                width: 100%;
-            }
-        }
-
-        /* Stilizare imagine card */
         .category img {
             width: 100%;
             height: 200px;
-            /* Fixăm înălțimea pentru uniformitate */
             border-radius: 8px;
             object-fit: cover;
         }
 
-        /* Titlurile să fie uniforme */
         .category h3 {
             margin-top: 10px;
             color: #222;
@@ -474,6 +445,6 @@ include ('header.php');
 
     <script src="" async defer></script>
 </body>
-<?php include ('footer.php'); ?>
+<?php include 'footer.php'; ?>
 
 </html>

@@ -7,7 +7,6 @@ include "mysql.php";
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Barbati</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="">
@@ -29,118 +28,210 @@ include "mysql.php";
             display: table;
         }
 
-        .image {
-            opacity: 1;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: #222;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo a {
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+            transition: background 0.3s ease;
+        }
+
+        /* Dropdown Styling */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #222;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            min-width: 150px;
+            z-index: 1000;
+        }
+
+        .dropdown-menu li {
+            width: 100%;
+        }
+
+        .dropdown-menu li a {
             display: block;
-            transition: .5s ease;
-            backface-visibility: hidden;
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
         }
 
-        .image:hover {
-            opacity: 0.3;
+        .dropdown-menu li a:hover {
+            background: #f4f4f4;
+            color: #222;
         }
 
-        .text {
-            background-color: #04AA6D;
-            color: white;
-            font-size: 16px;
-            padding: 16px 32px;
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            flex: 1;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 20px;
         }
 
         ul {
-            list-style-type: none;
-            margin: -0.2em;
-            padding: 0.2em;
-            overflow: hidden;
-            background-color: #38444d;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a,
-        .dropbtn {
-            display: inline-block;
-            color: white;
+            list-style: none;
+            padding: 0;
             text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
         }
 
-        li a:hover,
-        .dropdown:hover .dropbtn {
-            background-color: green;
-        }
-
-        li.dropdown {
+        ul li {
+            background: #222;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 5px;
             display: inline-block;
+            width: 80%;
         }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #38444d;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
+        .section {
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .dropdown-content a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
+        img {
             display: block;
-            text-align: left;
+            margin: 0 auto;
+            max-width: 54%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-
-        .dropdown:hover .dropdown-content {
+        .img1 {
             display: block;
+            margin: 0 auto;
+            max-width: 61%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        li:last-child {
-            border-right: none;
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
 
-        li a:hover:not(.active) {
-            background-color: #111;
+        .categories {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        .active {
-            background-color: #04AA6D;
+        .category {
+            text-align: center;
+            width: calc(33.333% - 20px);
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 350px;
+        }
+
+        .category img {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .category h3 {
+            margin-top: 10px;
+            color: #222;
+            font-size: 20px;
+        }
+
+        p.price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #e67e22;
         }
     </style>
 </head>
 
 <body>
-
-    <ul>
-        <li><a href="index.php" class="active">Home</a></li> <!-- back to home page -->
-        <li><a href="femei.php">Femei</a></li> <!-- <40 -->
-        <li><a href="barbati.php" class="active">Barbati</a></li> <!-- marimi >40 -->
-        <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">Branduri</a>
-            <div class="dropdown-content">
-                <a href="./Drpdwn/Timberland_products.php">Timberland</a>
-                <a href="./Drpdwn/Dior_products.php">Dior</a>
-                <a href="./Drpdwn/Nike_products.php">Nike</a>
-                <a href="./Drpdwn/Lanvin_products.php">Lanvin</a>
-                <a href="./Drpdwn/ChristianL_products.php">Christian Louboutin</a>
-                <a href="./Drpdwn/LouisV_products.php">Louis Vuitton</a>
-                <a href="./Drpdwn/RickO_products.php">Rick Owens</a>
-                <a href="./Drpdwn/MaisonM_products.php">Maison Mihara</a>
-                <a href="./Drpdwn/Balenciaga_products.php">Balenciaga</a>
-                <a href="./Drpdwn/OffWhite_products.php">Off-White</a>
-            </div>
-        <li style="float:right"><a href="#about" class="active">About</a></li>
-        <li style="float:right"><a href="#favorite">Favorite</a></li>
-        <li style="float:right"><a href="#contact" class="active">Contact</a></li>
-        <!-- date de contact: email/nr de tel/ sediu -->
-    </ul>
+    <?php
+    $title = "Barbati - ZesSneakers";
+    include 'header.php';
+    ?>
 
     <?php
 
@@ -163,18 +254,17 @@ include "mysql.php";
     ";
 
     $result = $connection->query($query);
-    echo "<div class='row'>";
-    echo "<div class='column'>";
+    echo "<div class='categories'>";
     while ($row = $result->fetch_assoc()) {
+        echo "<div class='category'>";
         $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "default.png";
-
-        echo "<img src='./img/$image' alt='" . $row["Model"] . "' style='width:200px; height:auto;'><br>";
-        echo "<p><strong>Model:</strong> " . $row["Model"] . "</p>";
-        echo "<p><strong>Marimi disponibile:</strong> " . $row["Marimi"] . "</p>";
-        echo "<p><strong>Pret:</strong> " . $row["Pret"] . " RON</p>";
+        echo "<img src='./img/$image' alt='" . $row["Model"] . "' style='width:200px; height:auto;'>";
+        echo "<p>" . $row["Model"] . "</p>";
+        echo "<p>Marimi disponibile:" . $row["Marimi"] . "</p>";
+        echo "<p class='price'>" . $row["Pret"] . " RON</p>";
+        echo "</div>";
     }
 
-    echo "</div>";
     echo "</div>";
 
     $connection->close();
@@ -182,5 +272,6 @@ include "mysql.php";
 
     <script src="" async defer></script>
 </body>
+<?php include 'footer.php'; ?>
 
 </html>

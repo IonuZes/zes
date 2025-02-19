@@ -130,6 +130,7 @@ include("mysql.php");
 
         ul li {
             background: #222;
+            color: white;
             margin: 10px auto;
             padding: 10px;
             border-radius: 5px;
