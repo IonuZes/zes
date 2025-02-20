@@ -171,8 +171,8 @@ include 'header.php';
     <div class="section">
         <h2>Date de contact</h2>
         <ul>
-            <li><strong>Nume Patron:</strong>Oniciu Ionut</li>
-            <li><strong>Administrator:</strong>Oniciu Andreea</li>
+            <li><strong>Fondator: </strong>Oniciu Ionut</li>
+            <li><strong>Co-Fondator: </strong>Oniciu Andreea</li>
             <li><strong>Email:</strong> contact@zessneakers.ro</li>
             <li><strong>Telefon:</strong> +40 755 123 456</li>
         </ul>

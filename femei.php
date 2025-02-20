@@ -250,13 +250,30 @@ include "mysql.php";
            OR s.Marimi LIKE '%39%' 
            OR s.Marimi LIKE '%40%'
     ";
-
+    $model1 = "Nike Air Jordan 1";
+    $model2 = "Louis Vuitton Skate";
+    $model3 = "Lanvin Curb";
+    $model4 = "Maison Mihara Yasuhiro";
+    $model5 = "Rick Owens DRKSHDW";
+    $model6 = "Nike Air Force 1";
     $result = $connection->query($query);
     echo "<div class='categories'>";
     while ($row = $result->fetch_assoc()) {
         echo "<div class='category'>";
         $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "default.png";
-        echo "<img src='./img/$image' alt='" . $row["Model"] . "' style='width:200px; height:auto;'>";
+        if($row["Model"] == $model1){
+            echo "<a href='/atestat/sneaker_pages/jordan1.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
+        }else if($row["Model"] == $model2){
+            echo "<a href='/atestat/sneaker_pages/sk8.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
+        }else if($row["Model"] == $model3){
+            echo "<a href='/atestat/sneaker_pages/curb.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
+        }else if($row["Model"] == $model4){
+            echo "<a href='/atestat/sneaker_pages/mihara.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
+        }else if($row["Model"] == $model5){
+            echo "<a href='/atestat/sneaker_pages/rick.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
+        }else{
+            echo "<a href='/atestat/sneaker_pages/af1.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
+        }
         echo "<p>" . $row["Model"] . "</p>";
         echo "<p>Marimi disponibile:" . $row["Marimi"] . "</p>";
         echo "<p class='price'>" . $row["Pret"] . " RON</p>";

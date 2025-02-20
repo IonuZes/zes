@@ -1,6 +1,6 @@
 <?php
 $title = "Nike - Products";
-include "mysqll.php";
+include "mysql.php";
 include "header.php";
 ?>
 <!DOCTYPE html>

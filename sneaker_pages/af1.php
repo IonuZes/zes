@@ -1,5 +1,5 @@
 <?php
-$title = "Nike AF1 - ZesSneakers";
+$title = "AF1 - View";
 include("mysql.php");
 include ('header.php');
 ?>
@@ -211,6 +211,11 @@ include ('header.php');
             bottom: 0;
             width: 100%;
         }
+        
+        span.price {
+            font-weight: bold;
+            color: #e67e22;
+        }
     </style>
 
 </head>
@@ -236,7 +241,7 @@ include ('header.php');
 
             <!-- Product Pricing -->
             <div class="product-price">
-                <span>550 RON</span>
+                <span class="price">550 RON</span>
             </div>
 
             <div class="product-size">

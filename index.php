@@ -160,7 +160,7 @@ include 'header.php';
         img {
             display: block;
             margin: 0 auto;
-            max-width: 54%;
+            max-width: 62%;
             height: auto;
             border-radius: 8px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -169,7 +169,7 @@ include 'header.php';
         .img1 {
             display: block;
             margin: 0 auto;
-            max-width: 61%;
+            max-width: 69%;
             height: auto;
             border-radius: 8px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);

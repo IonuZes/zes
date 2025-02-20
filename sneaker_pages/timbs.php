@@ -1,5 +1,7 @@
 <?php
+$title = "6InchPremium - View";
 include("mysql.php");
+include ('header.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,8 +15,7 @@ include("mysql.php");
     <link rel="stylesheet" href="">
 
     <style>
-        /* Basic Styling */
-        html,
+         html,
         body {
             height: 100%;
             width: 100%;
@@ -29,7 +30,6 @@ include("mysql.php");
             display: flex;
         }
 
-        /* Columns */
         .left-column {
             width: 65%;
             position: relative;
@@ -40,7 +40,6 @@ include("mysql.php");
             margin-top: 60px;
         }
 
-        /* Left Column */
         .left-column img {
             width: 100%;
             position: absolute;
@@ -54,7 +53,6 @@ include("mysql.php");
             opacity: 1;
         }
 
-        /* Product Description */
         .product-description {
             border-bottom: 1px solid #E1E8EE;
             margin-bottom: 20px;
@@ -82,7 +80,6 @@ include("mysql.php");
             line-height: 24px;
         }
 
-        /* Product Price */
         .product-price {
             display: flex;
             align-items: center;
@@ -120,120 +117,102 @@ include("mysql.php");
             position: relative;
         }
 
-        * {
-            box-sizing: border-box;
-        }
-
-        .text {
-            background-color: #04AA6D;
-            color: white;
-            font-size: 16px;
-            padding: 16px 32px;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: -0.2em;
-            padding: 0.2em;
-            overflow: hidden;
-            background-color: #38444d;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a,
-        .dropbtn {
-            display: inline-block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        li a:hover,
-        .dropdown:hover .dropbtn {
-            background-color: green;
-        }
-
-        li.dropdown {
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #38444d;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        li:last-child {
-            border-right: none;
-        }
-
-        li a:hover:not(.active) {
-            background-color: #111;
-        }
-
-        .active {
-            background-color: #04AA6D;
-        }
-
-        .logo {
-            min-height: 500px;
+        .logi {
+            min-height: 550px;
             display: flex;
             justify-content: center;
             align-items: flex-end;
+        }
+        
+        .navbar {
+            background: #222;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo a {
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #222;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            min-width: 150px;
+            z-index: 1000;
+        }
+
+        .dropdown-menu li {
+            width: 100%;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .dropdown-menu li a:hover {
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        span.price {
+            font-weight: bold;
+            color: #e67e22;
         }
     </style>
 
 </head>
 
 <body>
-<ul>
-        <li><a href="/atestat/index.php" class="active">Home</a></li> <!-- back to home page -->
-        <li><a href="/atestat/femei.php">Femei</a></li> <!-- <40 -->
-        <li><a href="/atestat/barbati.php" class="active">Barbati</a></li> <!-- marimi >40 -->
-        <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">Branduri</a>
-            <div class="dropdown-content">
-                <a href="../Drpdwn/Timberland_products.php">Timberland</a>
-                <a href="../Drpdwn/Dior_products.php">Dior</a>
-                <a href="../Drpdwn/Nike_products.php">Nike</a>
-                <a href="../Drpdwn/Lanvin_products.php">Lanvin</a>
-                <a href="../Drpdwn/ChristianL_products.php">Christian Louboutin</a>
-                <a href="../Drpdwn/LouisV_products.php">Louis Vuitton</a>
-                <a href="../Drpdwn/RickO_products.php">Rick Owens</a>
-                <a href="../Drpdwn/MaisonM_products.php">Maison Mihara</a>
-                <a href="../Drpdwn/Balenciaga_products.php">Balenciaga</a>
-                <a href="../Drpdwn/OffWhite_products.php">Off-White</a>
-            </div>
-        <li style="float:right"><a href="#about" class="active">About</a></li>
-        <li style="float:right"><a href="#favorite">Favorite</a></li>
-        <li style="float:right"><a href="#contact" class="active">Contact</a></li>
-        <!-- date de contact: email/nr de tel/ sediu -->
-    </ul>
-
-
     <main class="container">
 
         <!-- Left Column / Headphones Image -->
@@ -254,7 +233,7 @@ include("mysql.php");
 
             <!-- Product Pricing -->
             <div class="product-price">
-                <span>800 RON</span>
+                <span class="price">800 RON</span>
             </div>
 
             <div class="product-size">
@@ -262,10 +241,10 @@ include("mysql.php");
             </div>
         </div>
     </main>
-    <div class="logo">
+    <div class="logi">
         <a href="https://www.timberland.ca/en-ca" target="_blank" ><img src="/atestat/brand-logo/timberlands.png" alt="" width="500" height="300"></a>
     </div>
     <script src="" async defer></script>
 </body>
-
+<?php include ('footer.php');?>
 </html>
