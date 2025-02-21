@@ -14,6 +14,10 @@
             <div class="logo">
                 <a href="/atestat/index.php">ZesSneakers</a>
             </div>
+            <form action="/atestat/img/search.php" method="GET" class="search-form">
+                    <input type="text" name="query" placeholder="Search..." required>
+                    <button type="submit">🔍</button>
+                </form>
             <nav>
                 <ul>
                     <li><a href="/atestat/about.php">About</a></li>
