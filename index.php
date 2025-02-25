@@ -16,6 +16,7 @@ include 'header.php';
 </head>
 
 <body>
+    <!-- TODO: Go for css -->
     <div class="categories">
         <div class="category">
             <a href="./sneaker_pages/timbs.php"><img src="./img/timbs.png" alt="Timbs" class="img"></a>
