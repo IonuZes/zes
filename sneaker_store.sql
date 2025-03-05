@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2025 at 06:21 PM
+-- Generation Time: Mar 05, 2025 at 08:48 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,10 +39,10 @@ CREATE TABLE `imagini` (
 
 INSERT INTO `imagini` (`id_imagine`, `id_sneaker`, `nume_imagine`) VALUES
 (1, 1, 'af1.png'),
-(2, 2, 'track.png'),
+(2, 2, 'tracks.png'),
 (3, 3, 'Jordan1.png'),
 (4, 4, 'sk8.png'),
-(5, 5, 'Lanvin.png'),
+(5, 5, 'lanvinc.png'),
 (6, 6, 'BRB.png'),
 (7, 7, 'diorb30.png'),
 (8, 8, 'timbs.png'),
@@ -50,6 +50,27 @@ INSERT INTO `imagini` (`id_imagine`, `id_sneaker`, `nume_imagine`) VALUES
 (10, 10, 'CLA.png'),
 (11, 11, 'ro.png'),
 (12, 12, 'mm.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `country` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `postal_code` varchar(20) NOT NULL,
+  `street` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -95,6 +116,13 @@ ALTER TABLE `imagini`
   ADD KEY `id_sneaker` (`id_sneaker`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexes for table `sneakers`
 --
 ALTER TABLE `sneakers`
@@ -111,6 +139,12 @@ ALTER TABLE `imagini`
   MODIFY `id_imagine` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `sneakers`
 --
 ALTER TABLE `sneakers`
@@ -125,6 +159,12 @@ ALTER TABLE `sneakers`
 --
 ALTER TABLE `imagini`
   ADD CONSTRAINT `imagini_ibfk_1` FOREIGN KEY (`id_sneaker`) REFERENCES `sneakers` (`id`);
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `sneakers` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

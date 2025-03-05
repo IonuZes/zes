@@ -1,3 +1,6 @@
+<?php
+include "mysql.php";
+?>
 <!DOCTYPE html>
 <html lang="ro">
 
@@ -42,9 +45,22 @@
                     </li>
 
                     <li><a href="/atestat/contact.php">Contact</a></li>
+                    <?php
+                        echo '<li>';
+                            echo "<h2>Coșul tău</h2>";
+                            if (!empty($_SESSION['cart'])) {
+                                foreach ($_SESSION['cart'] as $item) {
+                                    echo "Produs ID: " . $item['product_id'] . " - Preț: " . $item['price'] . "<br>";
+                                }
+                                echo '<a href="checkout.php"><button>Continuă să comanzi</button></a>';
+                            } else {
+                                echo "Coșul este gol.";
+                            }
+                        echo '</li>';
+                    ?>
                 </ul>
             </nav>
-        </>
+        </div>
     </header>
 </body>
 
