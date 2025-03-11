@@ -27,9 +27,8 @@ include "mysql.php";
                     <li><a href="/atestat/barbati.php">Bărbați</a></li>
                     <li><a href="/atestat/femei.php">Femei</a></li>
 
-                    <!-- Dropdown Brand-uri -->
                     <li class="dropdown">
-                        <a href="#">Brand-uri ▼</a>
+                        <a href="#">Brand ▼</a>
                         <ul class="dropdown-menu">
                             <li><a href="/atestat/Drpdwn/Timberland_products.php">Timberland</a></li>
                             <li><a href="/atestat/Drpdwn/Dior_products.php">Dior</a></li>
@@ -45,19 +44,7 @@ include "mysql.php";
                     </li>
 
                     <li><a href="/atestat/contact.php">Contact</a></li>
-                    <?php
-                        echo '<li>';
-                            echo "<h2>Coșul tău</h2>";
-                            if (!empty($_SESSION['cart'])) {
-                                foreach ($_SESSION['cart'] as $item) {
-                                    echo "Produs ID: " . $item['product_id'] . " - Preț: " . $item['price'] . "<br>";
-                                }
-                                echo '<a href="checkout.php"><button>Continuă să comanzi</button></a>';
-                            } else {
-                                echo "Coșul este gol.";
-                            }
-                        echo '</li>';
-                    ?>
+                    <li><a href="/atestat/basket.php">Cos</a></li>
                 </ul>
             </nav>
         </div>

@@ -42,6 +42,7 @@
                     </li>
 
                     <li><a href="/atestat/contact.php">Contact</a></li>
+                    <li><a href="/atestat/basket.php">Cos</a></li>
                 </ul>
             </nav>
         </div>

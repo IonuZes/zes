@@ -2,6 +2,38 @@
 $title = "AF1 - View";
 include("mysql.php");
 include ('header.php');
+
+    session_start();
+    $id = intval($_GET['id']);
+    $query = "SELECT * FROM sneakers WHERE id = ?";
+    $stmt = $connection->prepare($query);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 0) {
+        die("Produsul nu există.");
+    }
+
+    $product = $result->fetch_assoc();
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['size'])) {
+        $size = $_POST['size'];
+        
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
+
+        $_SESSION['cart'][] = [
+            'id' => $product['id'],
+            'model' => $product['Model'],
+            'size' => $size,
+            'price' => $product['Pret']
+        ];
+        
+        header("Location: cos.php");
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,24 +67,22 @@ include ('header.php');
             <div class="product-size">
                 <span>38 | 39 | 42 | 43 | 44</span>
             </div>
-            <div class="addcart">
-            <?php
-                session_start();
+            <div class="add_cart">
+                <h1><?php echo htmlspecialchars($product['Model']); ?></h1>
+                <p>Preț: <?php echo $product['Pret']; ?> RON</p>
                 
-                if (!isset($_SESSION['cart'])) {
-                $_SESSION['cart'] = [];
-                }
-
-                if (isset($_POST['add_to_cart'])) {
-                $product_id = $_POST['product_id'];
-                $price = $_POST['price'];
-
-                $_SESSION['cart'][] = [
-                'product_id' => $product_id,
-                'price' => $price
-                ];
-                }
-            ?>
+                <form method="post">
+                    <label for="size">Alege mărimea:</label>
+                    <select name="size" id="size" required>
+                        <?php 
+                        $sizes = explode(", ", $product['Marimi']);
+                        foreach ($sizes as $size) {
+                            echo "<option value='" . htmlspecialchars($size) . "'>" . htmlspecialchars($size) . "</option>";
+                        }
+                        ?>
+                    </select>
+                    <button type="submit">Adaugă în coș</button>
+                </form>
             </div>
         </div>
     </main>
