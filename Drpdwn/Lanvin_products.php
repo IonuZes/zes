@@ -1,5 +1,5 @@
 <?php
-$title = "Lanvin - Products";
+$title = "Louis Vuitton - Products";
 include "mysql.php";
 include "header.php";
 ?>
@@ -17,12 +17,12 @@ include "header.php";
 <body>
     <?php
     $stmt = $connection->prepare("
-        SELECT s.Model, s.Marimi, s.Pret, i.nume_imagine 
+        SELECT s.id, s.Model, s.Marimi, s.Pret, i.nume_imagine 
         FROM sneakers s
         LEFT JOIN Imagini i ON s.id = i.id_sneaker
         WHERE s.Marca = ?
     ");
-    $marca = "Lanvin";
+    $marca = "Louis Vuitton";
     $stmt->bind_param("s", $marca);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -33,7 +33,7 @@ include "header.php";
         echo "<p>Marimi disponibile: " . $row["Marimi"] . "</p>";
         echo "<p class='price'>" . $row["Pret"] . " RON</p>";
         $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "track.png";
-        echo "<a href='/atestat/sneaker_pages/curb.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
+        echo "<a href='/atestat/sneaker_pages/snkrs.php?id=". $row['id']. "'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
         echo "</div>";
     }
     echo "</div>";

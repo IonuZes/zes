@@ -1,34 +1,52 @@
 <?php
+include 'header.php';
 session_start();
-require 'mysql.php'; // Conectarea la baza de date
+require_once 'mysql.php'; // or whatever your database connection file is named
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $email = $_POST['email'];
-    $country = $_POST['country'];
-    $state = $_POST['state'];
-    $city = $_POST['city'];
-    $postal_code = $_POST['postal_code'];
-    $street = $_POST['street'];
-    
-    // Salvare fiecare produs din coș în baza de date
-    foreach ($_SESSION['cart'] as $item) {
-        $product_id = $item['product_id'];
-        $price = $item['price'];
-        
-        $query = "INSERT INTO orders (product_id, price, first_name, last_name, email, country, state, city, postal_code, street) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("idssssssss", $product_id, $price, $first_name, $last_name, $email, $country, $state, $city, $postal_code, $street);
-        $stmt->execute();
+    try {
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $email = $_POST['email'];
+        $country = $_POST['country'];
+        $state = $_POST['state'];
+        $city = $_POST['city'];
+        $postal_code = $_POST['postal_code'];
+        $street = $_POST['street'];
+
+        // Calculate total price
+        $total_price = 0;
+        foreach ($_SESSION['cart'] as $item) {
+            $total_price += $item['price'];
+        }
+
+        // Start a transaction
+        $conn->beginTransaction();
+
+        // Insert the order
+        $stmt = $conn->prepare("INSERT INTO orders (first_name, last_name, email, country, state, city, postal_code, street, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$first_name, $last_name, $email, $country, $state, $city, $postal_code, $street, $total_price]);
+
+        $order_id = $conn->lastInsertId();
+
+        // Insert order items
+        $stmt = $conn->prepare("INSERT INTO order_items (order_id, product_id, price) VALUES (?, ?, ?)");
+        foreach ($_SESSION['cart'] as $item) {
+            $stmt->execute([$order_id, $item['id'], $item['price']]);
+        }
+
+        // Commit the transaction
+        $conn->commit();
+        unset($_SESSION['cart']);
+
+        echo "Order placed successfully!";
+    } catch (PDOException $e) {
+        // Rollback the transaction if there was an error
+        $conn->rollBack();
+        echo "Error: " . $e->getMessage();
     }
-    
-    // Golire coș după plasarea comenzii
-    $_SESSION['cart'] = [];
-    header("Location: thank_you.php");
-    exit();
 }
+
 ?>
 
 <form method="POST" action="checkout.php">
@@ -41,4 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="text" name="postal_code" placeholder="Cod poștal" required>
     <input type="text" name="street" placeholder="Strada" required>
     <button type="submit">Finalizează comanda</button>
+
 </form>
+<?php include 'footer.php'; ?>

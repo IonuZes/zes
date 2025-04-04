@@ -34,9 +34,8 @@ include 'header.php';
         <p>Suntem o echipă formată din iubitori de sneakersi, fiecare membru având o vastă experiență în domeniu.</p>
     </div>
 
-    <h2>Magazinele noastre</h2>
-
     <div class="section">
+    <h2>Magazinele noastre</h2>
         <h3>Magazin Deva</h3>
         <img src="./img/magazin1.jpg" alt="Magazin ZesSneakers Deva">
         <p><strong>Adresă:</strong> Strada Libertății nr. 10, Deva, Hunedoara</p>

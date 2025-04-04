@@ -1,11 +1,10 @@
 <?php
-$title = "AF1 - View";
 include("mysql.php");
 include ('header.php');
 
     session_start();
-    $id = intval($_GET['id']);
-    $query = "SELECT * FROM sneakers WHERE id = ?";
+    $id = isset($_GET['id']) ? $_GET['id'] : null;
+    $query = "select sneakers.id, sneakers.Model, sneakers.Marimi, sneakers.Pret, sneakers.Marca, sneakers.Descriere, sneakers.Site, sneakers.Site_img, imagini.nume_imagine from sneakers join imagini on sneakers.id = imagini.id_sneaker where id = ?;";
     $stmt = $connection->prepare($query);
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -31,9 +30,10 @@ include ('header.php');
             'price' => $product['Pret']
         ];
         
-        header("Location: cos.php");
+        header("Location: basket.php");
         exit();
     }
+    $title = $product['Model']
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,27 +50,21 @@ include ('header.php');
 <body>
     <main class="container">
         <div class="left-column">
-            <img src="/atestat/img/af1low.png" class="active">
+            <img src="/atestat/img/<?php echo $product['nume_imagine']?>" class="active">
         </div>
 
         <div class="right-column">
             <div class="product-description">
-                <span>Nike</span>
-                <h2>Air Force 1 Low</h2>
-                <p>Unul dintre cele mai iconice modele Nike, Air Force 1 este apreciat pentru designul său clasic și versatilitatea sa. Conceput inițial ca un sneaker de baschet, a devenit un must-have în moda streetwear.</p>
+                <span><?php echo $product['Marca']?></span>
+                <h2><?php echo $product['Model']?></h2>
+                <p><?php echo $product['Descriere']?></p>
             </div>
             
             <div class="product-price">
-                <span class="price">550 RON</span>
+                <span class="price"><?php echo $product['Pret']?> RON</span>
             </div>
 
-            <div class="product-size">
-                <span>38 | 39 | 42 | 43 | 44</span>
-            </div>
             <div class="add_cart">
-                <h1><?php echo htmlspecialchars($product['Model']); ?></h1>
-                <p>Preț: <?php echo $product['Pret']; ?> RON</p>
-                
                 <form method="post">
                     <label for="size">Alege mărimea:</label>
                     <select name="size" id="size" required>
@@ -87,7 +81,7 @@ include ('header.php');
         </div>
     </main>
     <div class="logi">
-        <a href="https://www.nike.com/ro/men" target="_blank"><img src="/atestat/brand-logo/nikes.png" alt="" width="500" height="400"></a>
+        <a href="<?php echo $product['Site']?>" target="_blank"><img src="/atestat/brand-logo/<?php echo $product['Site_img']?>" alt=""></a>
     </div>
     <script src="" async defer></script>
 </body>

@@ -17,58 +17,28 @@ include "mysql.php";
     $title = "Femei - ZesSneakers";
     include 'header.php';
     ?>
-
+    <div class="categories">
     <?php
-
-    $connection = new mysqli("localhost", "root", "", "sneaker_store");
-
-    if ($connection->connect_error) {
-        die("Conexiunea a eșuat: " . $connection->connect_error);
-    }
-
-    $query = "
-        SELECT s.id, s.Model, s.Marimi, s.Pret, i.nume_imagine 
-        FROM sneakers s
-        LEFT JOIN Imagini i ON s.id = i.id_sneaker
-        WHERE s.Marimi LIKE '%37%' 
-           OR s.Marimi LIKE '%38%' 
-           OR s.Marimi LIKE '%39%' 
-           OR s.Marimi LIKE '%40%'
-    ";
-    $model1 = "Nike Air Jordan 1";
-    $model2 = "Louis Vuitton Skate";
-    $model3 = "Lanvin Curb";
-    $model4 = "Maison Mihara Yasuhiro";
-    $model5 = "Rick Owens DRKSHDW";
-    $model6 = "Nike Air Force 1";
-    $result = $connection->query($query);
-    echo "<div class='categories'>";
-    while ($row = $result->fetch_assoc()) {
+    $stmt = $conn->prepare("SELECT sneakers.id, sneakers.Model, sneakers.Marimi, sneakers.Pret, sneakers.Marca, sneakers.Descriere, sneakers.Site, sneakers.Site_img, imagini.nume_imagine 
+    FROM sneakers 
+    JOIN imagini ON sneakers.id = imagini.id_sneaker 
+    WHERE sneakers.Marimi LIKE '%37%' 
+    OR sneakers.Marimi LIKE '%38%' 
+    OR sneakers.Marimi LIKE '%39%' 
+    OR sneakers.Marimi LIKE '%40%'");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($result as $row) {
         echo "<div class='category'>";
-        $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "default.png";
-        if($row["Model"] == $model1){
-            echo "<a href='/atestat/sneaker_pages/jordan1.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
-        }else if($row["Model"] == $model2){
-            echo "<a href='/atestat/sneaker_pages/sk8.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
-        }else if($row["Model"] == $model3){
-            echo "<a href='/atestat/sneaker_pages/curb.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
-        }else if($row["Model"] == $model4){
-            echo "<a href='/atestat/sneaker_pages/mihara.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
-        }else if($row["Model"] == $model5){
-            echo "<a href='/atestat/sneaker_pages/rick.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
-        }else{
-            echo "<a href='/atestat/sneaker_pages/af1.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
-        }
         echo "<p>" . $row["Model"] . "</p>";
-        echo "<p>Marimi disponibile:" . $row["Marimi"] . "</p>";
+        echo "<p>Marimi disponibile: " . $row["Marimi"] . "</p>";
         echo "<p class='price'>" . $row["Pret"] . " RON</p>";
+        $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "track.png";
+        echo "<a href='./sneaker_pages/snkrs.php?id=" . $row['id'] . "'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
         echo "</div>";
     }
-
-    echo "</div>";
-
-    $connection->close();
     ?>
+    </div>
 
     <script src="" async defer></script>
 </body>

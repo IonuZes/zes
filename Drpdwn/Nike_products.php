@@ -17,14 +17,12 @@ include "header.php";
 <body>
     <?php
     $stmt = $connection->prepare("
-        SELECT s.Model, s.Marimi, s.Pret, i.nume_imagine 
+        SELECT s.id, s.Model, s.Marimi, s.Pret, i.nume_imagine
         FROM sneakers s
         LEFT JOIN Imagini i ON s.id = i.id_sneaker
         WHERE s.Marca = ?
     ");
     $marca = "Nike";
-    $model1 = "Nike Air Force 1";
-    $model2 = "Nike Air Jordan 1";
     $stmt->bind_param("s", $marca);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -35,11 +33,7 @@ include "header.php";
         echo "<p>Marimi disponibile: " . $row["Marimi"] . "</p>";
         echo "<p class='price'>" . $row["Pret"] . " RON</p>";
         $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "oof.png";
-        if($row["Model"] == $model2){
-            echo "<a href='/atestat/sneaker_pages/jordan1.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
-        }else{
-            echo "<a href='/atestat/sneaker_pages/af1.php'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
-        }
+        echo "<a href='/atestat/sneaker_pages/snkrs.php?id=". $row['id']. "'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
         echo "</div>";
     }
     echo "</div>";

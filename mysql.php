@@ -1,7 +1,13 @@
 <?php
-    $hostname = "localhost";
+    $servername = "localhost";
     $username = "root";
     $password = "";
-    $db = "sneaker_store";
-    $connection = mysqli_connect($hostname,$username,$password,$db);
+    $dbname = "sneaker_store";
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
 ?>
