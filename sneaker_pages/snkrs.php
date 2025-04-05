@@ -1,6 +1,6 @@
 <?php
-include("mysql.php");
-include ('header.php');
+include "mysql.php";
+include 'header.php';
 
 session_start();
 $id = isset($_GET['id']) ? $_GET['id'] : null;
@@ -47,25 +47,19 @@ $title = $product['Model'];
 </head>
 
 <body>
-    <main class="container">
-        <div class="left-column">
-            <img src="/atestat/img/<?php echo $product['nume_imagine']?>" class="active">
+<div class="container">
+    <div class="product-details">
+        <div class="product-image">
+            <img src="/atestat/img/<?php echo $product['nume_imagine']?>" alt="<?php echo $product['Model']; ?>">
         </div>
-
-        <div class="right-column">
-            <div class="product-description">
-                <span><?php echo $product['Marca']?></span>
-                <h2><?php echo $product['Model']?></h2>
-                <p><?php echo $product['Descriere']?></p>
-            </div>
-
-            <div class="product-price">
-                <span class="price"><?php echo $product['Pret']?> RON</span>
-            </div>
-
-            <div class="add_tton">
+        <div class="product-info">
+            <h1><?php echo $product['Model']?></h1>
+            <p><?php echo $product['Marca']?></p>
+            <p><?php echo $product['Descriere']?></p>
+            <p class="price"><?php echo $product['Pret']?> RON</p>
+            <div class="add-to-cart">
                 <form method="post">
-                    <label for="size">Alege mărimea:</label>
+                    <label for="size">Choose size:</label>
                     <select name="size" id="size" required>
                         <?php 
                         $sizes = explode(", ", $product['Marimi']);
@@ -74,14 +68,17 @@ $title = $product['Model'];
                         }
                         ?>
                     </select>
-                    <button type="submit">Adaugă în coș</button>
+                    <button type="submit" class="btn">Add to Cart</button>
                 </form>
             </div>
         </div>
-    </main>
-    <div class="logi">
-        <a href="<?php echo $product['Site']?>" target="_blank"><img src="/atestat/brand-logo/<?php echo $product['Site_img']?>" alt=""></a>
     </div>
+    <div class="brand-logo">
+        <a href="<?php echo $product['Site']?>" target="_blank">
+            <img src="/atestat/brand-logo/<?php echo $product['Site_img']?>" alt="<?php echo $product['Marca']; ?> logo">
+        </a>
+    </div>
+</div>
 </body>
-<?php include ('footer.php'); ?>
+<?php include 'footer.php'; ?>
 </html>

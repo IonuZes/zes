@@ -80,7 +80,7 @@ include ('header.php');
             </div>
         </div>
     </main>
-    <div class="logi">
+    <div class="brand-logo">
         <a href="<?php echo $product['Site']?>" target="_blank"><img src="/atestat/brand-logo/<?php echo $product['Site_img']?>" alt=""></a>
     </div>
     <script src="" async defer></script>

@@ -16,26 +16,26 @@ include 'header.php';
 </head>
 
 <body>
-    <div class="content-wrapper">
-        <div class="categories">
+    <div class="container">
+        <div class="product-grid">
         <?php
         $stmt = $conn->prepare("SELECT sneakers.id, sneakers.Model, sneakers.Marimi, sneakers.Pret, sneakers.Marca, sneakers.Descriere, sneakers.Site, sneakers.Site_img, imagini.nume_imagine FROM sneakers JOIN imagini ON sneakers.id = imagini.id_sneaker");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result as $row) {
-            echo "<div class='category'>";
+            echo "<div class='product-item'>";
             echo "<p>" . $row["Model"] . "</p>";
-            echo "<p>Marimi disponibile: " . $row["Marimi"] . "</p>";
+            echo "<p>" . $row["Marimi"] . "</p>";
             echo "<p class='price'>" . $row["Pret"] . " RON</p>";
             $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "track.png";
             echo "<a href='./sneaker_pages/snkrs.php?id=" . $row['id'] . "'><img src='./img/$image' class='img' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
             echo "</div>";
         }
         ?>
+        </div>
+        <?php include 'footer.php'; ?>
+        <script src="" async defer></script>
     </div>
-
-    <script src="" async defer></script>
 </body>
-<?php include 'footer.php'; ?>
 
 </html>

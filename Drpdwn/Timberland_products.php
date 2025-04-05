@@ -11,7 +11,7 @@ include "header.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/atestat/styles.css">
 </head>
 
 <body>
@@ -26,14 +26,16 @@ include "header.php";
     $stmt->bind_param("s", $marca);
     $stmt->execute();
     $result = $stmt->get_result();
-    echo "<div class='categories'>";
+    echo "<div class='container'>";
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<div class='category'>";
-        echo "<p>" . $row["Model"] . "</p>";
-        echo "<p>Marimi disponibile: " . $row["Marimi"] . "</p>";
-        echo "<p class='price'>" . $row["Pret"] . " RON</p>";
-        $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "track.png";
-        echo "<a href='/atestat/sneaker_pages/snkrs.php?id=". $row['id']. "'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
+        echo "<div class='product-grid'>";
+            echo "<div class='product-item'>";
+                echo "<p>" . $row["Model"] . "</p>";
+                echo "<p>" . $row["Marimi"] . "</p>";
+                echo "<p class='price'>" . $row["Pret"] . " RON</p>";
+                $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "track.png";
+                echo "<a href='/atestat/sneaker_pages/snkrs.php?id=". $row['id']. "'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
+            echo "</div>";
         echo "</div>";
     }
     echo "</div>";
