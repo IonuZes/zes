@@ -1,7 +1,6 @@
 <?php
 include("mysql.php");
 include ('header.php');
-
     session_start();
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     $query = "select sneakers.id, sneakers.Model, sneakers.Marimi, sneakers.Pret, sneakers.Marca, sneakers.Descriere, sneakers.Site, sneakers.Site_img, imagini.nume_imagine from sneakers join imagini on sneakers.id = imagini.id_sneaker where id = ?;";
@@ -22,7 +21,7 @@ include ('header.php');
         if (!isset($_SESSION['cart'])) {
             $_SESSION['cart'] = [];
         }
-
+        
         $_SESSION['cart'][] = [
             'id' => $product['id'],
             'model' => $product['Model'],
@@ -33,7 +32,6 @@ include ('header.php');
         header("Location: basket.php");
         exit();
     }
-    $title = $product['Model']
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +39,7 @@ include ('header.php');
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title><?php echo $product['Model'] . ' " - ZesSneakers"'; ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
@@ -85,5 +83,5 @@ include ('header.php');
     </div>
     <script src="" async defer></script>
 </body>
-<?php include ('footer.php'); ?>
+<?php include 'footer.php'; ?>
 </html>

@@ -55,7 +55,6 @@ include 'header.php';
                     <li><strong class="color">Livrare rapidă și retur facil</strong></li>
                 </ul>
             </div>
-        </>
     </div>
 </div>
 

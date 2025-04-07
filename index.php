@@ -28,7 +28,7 @@ include 'header.php';
             echo "<p>" . $row["Marimi"] . "</p>";
             echo "<p class='price'>" . $row["Pret"] . " RON</p>";
             $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "track.png";
-            echo "<a href='./sneaker_pages/snkrs.php?id=" . $row['id'] . "'><img src='./img/$image' class='img' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
+            echo "<a href='./sneaker_pages/snkrs.php?id=" . $row['id'] . "'><img src='./img/$image' alt='" . $row["Model"] . "'></a>";
             echo "</div>";
         }
         ?>

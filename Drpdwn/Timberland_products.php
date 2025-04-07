@@ -27,17 +27,17 @@ include "header.php";
     $stmt->execute();
     $result = $stmt->get_result();
     echo "<div class='container'>";
+    echo "<div class='product-grid'>";
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<div class='product-grid'>";
             echo "<div class='product-item'>";
                 echo "<p>" . $row["Model"] . "</p>";
                 echo "<p>" . $row["Marimi"] . "</p>";
                 echo "<p class='price'>" . $row["Pret"] . " RON</p>";
                 $image = !empty($row["nume_imagine"]) ? $row["nume_imagine"] : "track.png";
-                echo "<a href='/atestat/sneaker_pages/snkrs.php?id=". $row['id']. "'><img src='./img/$image' alt='" . $row["Model"] . "' style='width:500px; height:auto;'></a>";
+                echo "<a href='/atestat/sneaker_pages/snkrs.php?id=". $row['id']. "'><img src='./img/$image' alt='" . $row["Model"] . "'></a>";
             echo "</div>";
-        echo "</div>";
     }
+    echo "</div>";
     echo "</div>";
     ?>
     <script src="" async defer></script>
